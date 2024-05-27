@@ -1,3 +1,13 @@
+'''
+    Author: Aiden Azarnoush
+    Dedicated to my mother, my true love, Simin Nematpour
+    School: Sharif University of Technology
+
+    Note:
+        Oirignally written in Pascal in 2010
+        Converted to Python in 2024
+'''
+
 import numpy as np
 
 class SudokuSolver:
