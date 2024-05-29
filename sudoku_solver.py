@@ -9,6 +9,7 @@
 '''
 
 import numpy as np
+import os
 
 class SudokuSolver:
     def __init__(self):
@@ -24,8 +25,17 @@ class SudokuSolver:
         return (row // 3) * 3 + (col // 3)
 
     def load_sudoku(self, filename):
+        # Get the directory of the current script
+        script_dir = os.path.dirname(__file__)
+        # Construct the full path to the file
+        full_path = os.path.join(script_dir, filename)
+        
+        # Check if file exists
+        if not os.path.exists(full_path):
+            raise FileNotFoundError(f"No such file or directory: '{full_path}'")
+
         # Load the Sudoku puzzle from a file
-        with open(filename, 'r') as file:
+        with open(full_path, 'r') as file:
             lines = file.readlines()
             if len(lines) != 9:
                 raise ValueError("Input file must contain exactly 9 lines.")
@@ -97,7 +107,7 @@ class SudokuSolver:
 
 # Create a SudokuSolver instance
 solver = SudokuSolver()
-# Load the Sudoku puzzle from the file
+# Load the Sudoku puzzle from the file (ensure sudoku.txt is in the same directory as this script)
 solver.load_sudoku('sudoku.txt')
 # Solve the puzzle
 if solver.solve():
